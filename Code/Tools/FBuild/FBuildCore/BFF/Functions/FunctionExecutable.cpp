@@ -298,6 +298,15 @@ bool FunctionExecutable::DependOnNode( const BFFIterator & iter, Node * node, De
 		return true;
 	}
 
+	// Start: Andrew Wiley - Red Kite Games - 19/02/2016
+	// an external executable? UE4 specific
+	if ( node->GetType() == Node::EXE_NODE )
+	{
+		nodes.Append( Dependency( node ) );
+		return true;
+	}
+	// End: Andrew Wiley - Red Kite Games - 19/02/2016
+
 	// a group (alias)?
 	if ( node->GetType() == Node::ALIAS_NODE )
 	{
